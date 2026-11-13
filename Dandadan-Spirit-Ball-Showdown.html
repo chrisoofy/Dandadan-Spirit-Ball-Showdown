@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dandadan: Spirit Ball Showdown</title>
+<style>
+*{box-sizing:border-box} :root{--bg:#090b13;--panel:#111522;--line:#282d42;--muted:#9aa3bb;--white:#f4f5fb;--pink:#ff4d91;--cyan:#52e5ff;--gold:#ffc857}
+body{margin:0;background:radial-gradient(ellipse at 50% -20%,#252040 0,#090b13 52%);color:var(--white);font-family:'Rajdhani',sans-serif;min-height:100vh}
+button,select,input{font:inherit}button{cursor:pointer}.app-shell{max-width:1500px;margin:auto;padding:24px 34px 18px}.topbar{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #272a3c;padding:4px 0 20px}.brand{display:flex;gap:13px;align-items:center}.brand-mark{width:48px;height:48px;border:1px solid var(--pink);display:grid;place-items:center;color:var(--pink);font-size:28px;transform:rotate(-8deg);box-shadow:0 0 22px #ff4d9130}.eyebrow{font:700 10px 'Orbitron',sans-serif;letter-spacing:2px;color:var(--cyan)}h1,h2,p{margin:0}h1{font:900 19px 'Orbitron',sans-serif;letter-spacing:1px;margin-top:5px}h1 span{color:var(--pink)}.top-actions{display:flex;align-items:center;gap:20px}.live-dot{font:700 10px 'Orbitron';letter-spacing:1px;color:#89f7c0}.live-dot:before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:#66edaa;margin-right:8px;box-shadow:0 0 10px #66edaa}.ghost-btn{background:#151a29;border:1px solid #363d56;color:#e7e9f3;padding:10px 14px;font:700 11px 'Orbitron';letter-spacing:.5px;border-radius:4px}.ghost-btn:hover{border-color:var(--cyan);color:var(--cyan)}main{padding:34px 0 26px}.intro{margin-bottom:26px}.intro h2{font:900 clamp(34px,5vw,58px)/.98 'Orbitron';letter-spacing:-2px;margin:12px 0}.intro h2 em{font-style:normal;color:var(--pink);text-shadow:0 0 30px #ff4d9155}.intro p{font-size:18px;color:#b2bad0;max-width:600px}.setup-grid{display:grid;grid-template-columns:1.45fr .8fr;gap:18px}.setup-card{background:linear-gradient(145deg,#151a29,#101420);border:1px solid var(--line);padding:22px;border-radius:8px;box-shadow:0 15px 50px #0004}.section-heading{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;font:700 12px 'Orbitron';letter-spacing:1px}.section-heading small{font:600 13px 'Rajdhani';letter-spacing:0;color:var(--muted)}.fighter-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.fighter-card{--accent:#fff;position:relative;text-align:left;display:flex;align-items:center;gap:13px;min-height:110px;padding:14px;background:#0c101b;border:1px solid #30364b;border-radius:6px;color:white;transition:.2s;overflow:hidden}.fighter-card:after{content:"";position:absolute;width:120px;height:120px;border-radius:50%;right:-45px;top:-50px;background:var(--accent);opacity:.08;filter:blur(4px)}.fighter-card.selected{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent),0 0 20px color-mix(in srgb,var(--accent),transparent 80%)}.fighter-orb{width:58px;height:58px;flex:none;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 32% 28%,white 0,#fff8 7%,var(--accent) 30%,#111 100%);border:3px solid var(--accent);box-shadow:0 0 20px color-mix(in srgb,var(--accent),transparent 55%);font:900 19px 'Orbitron';color:#10121c;text-shadow:0 1px 2px #fff}.fighter-info{position:relative;z-index:1}.fighter-info strong{display:block;font:700 16px 'Orbitron';margin-bottom:5px}.fighter-info small{color:#aeb6ca;font-size:13px;display:block}.fighter-info .power-name{color:var(--accent);font-weight:700;margin-top:5px}.select-mark{position:absolute;right:10px;bottom:9px;color:var(--accent);font:700 10px 'Orbitron'}.settings-card{display:flex;flex-direction:column;gap:16px}.settings-card label{display:block;color:#d6d9e5;font-weight:700;font-size:15px}.settings-card select{display:block;width:100%;margin-top:6px;background:#0b101b;color:white;border:1px solid #343b53;padding:11px;border-radius:4px}.range-row{display:flex;align-items:center;gap:14px;margin-top:7px}.range-row input{flex:1;accent-color:var(--pink)}.range-row output{font:700 13px 'Orbitron';color:var(--pink);min-width:65px}.primary-btn{border:0;border-radius:4px;background:linear-gradient(100deg,#ff3f89,#b44cff);color:white;padding:14px 18px;font:900 12px 'Orbitron';letter-spacing:1px;box-shadow:0 8px 22px #ff3f8933}.primary-btn:hover{filter:brightness(1.15);transform:translateY(-1px)}.primary-btn span{float:right}.hint{color:#8791a9;font-size:13px;margin-top:-7px}.hidden{display:none!important}.battle-toolbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}.battle-toolbar h2{font:900 22px 'Orbitron';margin-top:6px}.battle-controls{display:flex;gap:8px}.arena-wrap{position:relative;border:1px solid #333951;border-radius:7px;overflow:hidden;background:#070a13;box-shadow:0 20px 70px #0008}.arena-wrap canvas{display:block;width:100%;height:auto;aspect-ratio:1100/620}.countdown{position:absolute;inset:0;display:grid;place-items:center;font:900 110px 'Orbitron';color:white;text-shadow:0 0 35px var(--pink);background:#05071266}.fighter-status{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:13px}.status-card{background:#131827;border:1px solid #30364b;border-radius:5px;padding:10px 12px}.status-head{display:flex;justify-content:space-between;align-items:center;font:700 12px 'Orbitron';margin-bottom:8px}.hp-track{height:8px;background:#2a3042;border-radius:20px;overflow:hidden}.hp-fill{height:100%;border-radius:20px;transition:width .15s}.status-meta{display:flex;justify-content:space-between;color:#9ca6bd;font-size:12px;margin-top:6px}.battle-footer{display:flex;align-items:center;gap:20px;color:#a6afc4;font-size:12px;margin-top:12px}.battle-footer span:last-child{margin-left:auto;color:#e2e5ef}.legend-dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px}.hit{background:#ff507e}.power{background:#59e9ff}.result-overlay{position:absolute;inset:0;background:#050711d9;display:grid;place-items:center;backdrop-filter:blur(5px)}.result-card{text-align:center;background:#131827;border:1px solid #55506e;padding:36px 46px;border-radius:8px;box-shadow:0 0 60px #b44cff30}.result-card h2{font:900 clamp(26px,5vw,48px) 'Orbitron';color:var(--gold);margin:12px 0}.result-card p{color:#b4bdd0;margin-bottom:20px}.result-card .ghost-btn{margin-left:8px}footer{border-top:1px solid #272a3c;padding-top:16px;display:flex;justify-content:space-between;color:#65708b;font:600 9px 'Orbitron';letter-spacing:1px}
+@media(max-width:850px){.app-shell{padding:18px}.setup-grid{grid-template-columns:1fr}.top-actions .live-dot{display:none}.fighter-status{grid-template-columns:repeat(2,1fr)}.battle-toolbar{align-items:flex-start;gap:12px;flex-direction:column}.battle-controls{flex-wrap:wrap}.battle-footer{flex-wrap:wrap}.battle-footer span:last-child{margin-left:0;width:100%}}
+@media(max-width:520px){.fighter-grid{grid-template-columns:1fr}.topbar{align-items:flex-start}.brand-mark{width:38px;height:38px}.brand h1{font-size:14px}.top-actions{gap:5px}.top-actions .ghost-btn{font-size:9px;padding:8px}.app-shell{padding:14px}.setup-card{padding:15px}.section-heading small{font-size:11px}.result-card{padding:25px 16px}.result-card .ghost-btn{margin:8px 0 0}footer{gap:8px;flex-direction:column}}
+
+.matchup-picker{padding:13px;background:#0b101b;border:1px solid #343b53;border-radius:5px}.matchup-title{font:700 11px Orbitron,sans-serif;letter-spacing:1px;color:var(--cyan);margin-bottom:5px}.matchup-help{font-size:12px;color:#9ca6bd;margin-bottom:10px}.matchup-slots{display:grid;grid-template-columns:1fr 1fr;gap:9px}.matchup-slot label{font-size:12px!important;color:#bfc8dc!important}.matchup-slot select{margin-top:4px!important}.fighter-card{cursor:default}.fighter-card .select-mark{font-size:9px}.fighter-card.selected{border-color:var(--accent)}@media(max-width:520px){.matchup-slots{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body>
+<div class="app-shell">
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark">魂</span><div><div class="eyebrow">ANOMALOUS ARENA</div><h1>SPIRIT BALL <span>SHOWDOWN</span></h1></div></div>
+    <div class="top-actions"><span class="live-dot">SIMULATION ONLINE</span><button id="soundBtn" class="ghost-btn" aria-pressed="false">♫ SOUND: OFF</button></div>
+  </header>
+
+  <main>
+    <section id="setupPanel" class="setup-panel">
+      <div class="intro">
+        <div class="eyebrow">A DANDA-DAN FAN GAME</div>
+        <h2>FOUR FIGHTERS.<br><em>ONE</em> ARENA.</h2>
+        <p>Choose your fighters, set the rules, and let psychic power collide with supernatural speed.</p>
+      </div>
+      <div class="setup-grid">
+        <div class="setup-card">
+          <div class="section-heading"><span>01 / SELECT FIGHTERS</span><small>Choose two or four</small></div>
+          <div id="fighterGrid" class="fighter-grid"></div>
+        </div>
+        <div class="setup-card settings-card">
+          <div class="section-heading"><span>02 / MATCH SETTINGS</span><small>Make it yours</small></div>
+          <label>Battle format<select id="modeSelect"><option value="1v1">1 vs 1 — Duel</option><option value="2v2">2 vs 2 — Team Clash</option><option value="ffa">4-way — Free for All</option></select></label>
+          <div class="matchup-picker"><div class="matchup-title">CHOOSE THE MATCHUP</div><p class="matchup-help">Pick exactly who fights. Each fighter can only be assigned once.</p><div id="matchupSlots" class="matchup-slots"></div></div>
+          <label>Starting health <div class="range-row"><input id="healthInput" type="range" min="100" max="400" step="50" value="200"><output id="healthOut">200 HP</output></div></label>
+          <label>Battle speed<select id="speedSelect"><option value="1">Normal</option><option value="1.35">Fast</option><option value="0.75">Chill</option></select></label>
+          <label>Arena<select id="arenaSelect"><option value="neon">Neon Shrine</option><option value="school">Midnight School</option><option value="cosmic">Cosmic Rift</option></select></label>
+          <button id="startBtn" class="primary-btn">START THE SHOWDOWN <span>↗</span></button>
+          <p class="hint">Tip: You can pause, restart, or switch to full screen during a match.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="battlePanel" class="battle-panel hidden">
+      <div class="battle-toolbar">
+        <div><div class="eyebrow">LIVE MATCH</div><h2 id="matchTitle">SPIRIT CLASH</h2></div>
+        <div class="battle-controls"><button id="pauseBtn" class="ghost-btn">Ⅱ PAUSE</button><button id="restartBtn" class="ghost-btn">↻ RESTART</button><button id="fullBtn" class="ghost-btn">⛶ FULLSCREEN</button></div>
+      </div>
+      <div class="arena-wrap">
+        <canvas id="arena" width="1100" height="620" aria-label="Animated spirit ball battle arena"></canvas>
+        <div id="countdown" class="countdown hidden">3</div>
+        <div id="resultOverlay" class="result-overlay hidden"><div class="result-card"><div class="eyebrow">BATTLE COMPLETE</div><h2 id="winnerText">WINNER!</h2><p id="resultSub"></p><button id="againBtn" class="primary-btn">REMATCH ↻</button><button id="changeBtn" class="ghost-btn">CHANGE FIGHTERS</button></div></div>
+      </div>
+      <div id="fighterStatus" class="fighter-status"></div>
+      <div class="battle-footer"><span><i class="legend-dot hit"></i> HIT CONFIRMED</span><span><i class="legend-dot power"></i> SPECIAL ABILITY</span><span id="battleMessage">Waiting for the first clash...</span></div>
+    </section>
+  </main>
+  <footer><span>UNOFFICIAL FAN-MADE PROJECT · NOT AFFILIATED WITH DAN DA DAN</span><span>Built for chaotic supernatural battles</span></footer>
+</div>
+<script>
+(() => {
+"use strict";
+
+// Fighter data is the single source of truth for names, colors, stats, and signature powers.
+// Match state (position, velocity, health, cooldowns) is created fresh for every battle.
+const FIGHTERS = [
+ {id:"momo",name:"Momo Ayase",short:"桃",color:"#ff5a9b",team:0,weapon:"Psychic Force Rings",power:"Psychokinesis",desc:"Controls space and shoves rivals away.",hp:200,damage:13,speed:2.5,reach:1.05,special:"psychic"},
+ {id:"okarun",name:"Okarun",short:"速",color:"#5de5ff",team:1,weapon:"Turbo Speed Claws",power:"Turbo Burst",desc:"Dashes through the arena at wild speed.",hp:200,damage:10,speed:3.5,reach:.9,special:"turbo"},
+ {id:"aira",name:"Aira Shiratori",short:"愛",color:"#ffca59",team:0,weapon:"Acro-Hair Whips",power:"Crimson Halo",desc:"Whips a wide arc around her body.",hp:200,damage:11,speed:2.8,reach:1.3,special:"hair"},
+ {id:"jiji",name:"Jiji",short:"邪",color:"#a987ff",team:1,weapon:"Evil Eye Cursed Fists",power:"Evil Eye Surge",desc:"Unleashes a heavy burst of cursed energy.",hp:200,damage:15,speed:2.2,reach:1.15,special:"evil"}
+];
+const $ = id => document.getElementById(id);
+const canvas=$("arena"),ctx=canvas.getContext("2d");
+let selected=new Set(["momo","okarun"]), lineup=["momo","okarun","aira","jiji"], fighters=[], running=false, paused=false, over=false, raf=0, countdownTimer=0, battleToken=0, last=0, elapsed=0, speed=1, mode="1v1", sound=false, audioCtx=null, particles=[], floating=[], arenaStyle="neon", messageTimer=0, matchNumber=0;
+
+function renderSelection(){
+ const grid=$("fighterGrid"); grid.innerHTML="";
+ FIGHTERS.forEach(f=>{
+  const b=document.createElement("div"); b.className="fighter-card"+(selected.has(f.id)?" selected":""); b.style.setProperty("--accent",f.color);
+  b.innerHTML=`<span class="fighter-orb">${f.short}</span><span class="fighter-info"><strong>${f.name}</strong><small>${f.weapon}</small><small class="power-name">${f.power}</small></span><span class="select-mark">${selected.has(f.id)?"IN MATCH":"AVAILABLE"}</span>`;
+  grid.appendChild(b);
+ });
+}
+function renderMatchupSlots(){
+ const count=mode==="1v1"?2:4;
+ const labels=mode==="1v1"?["Fighter 1","Fighter 2"]:mode==="2v2"?["TEAM A · Fighter 1","TEAM A · Fighter 2","TEAM B · Fighter 1","TEAM B · Fighter 2"]:["Fighter 1","Fighter 2","Fighter 3","Fighter 4"];
+ const defaults=mode==="1v1"?["momo","okarun"]:lineup;
+ const slots=$("matchupSlots");slots.innerHTML="";
+ for(let i=0;i<count;i++){
+  const wrap=document.createElement("div");wrap.className="matchup-slot";
+  const label=document.createElement("label");label.textContent=labels[i];
+  const select=document.createElement("select");select.dataset.slot=String(i);select.setAttribute("aria-label",labels[i]);
+  FIGHTERS.forEach(f=>{const option=document.createElement("option");option.value=f.id;option.textContent=f.name;select.appendChild(option)});
+  select.value=defaults[i]||FIGHTERS[i].id;
+  select.addEventListener("change",()=>{syncMatchupSelection();renderSelection();refreshMatchupOptions()});
+  label.appendChild(select);wrap.appendChild(label);slots.appendChild(wrap);
+ }
+ syncMatchupSelection();refreshMatchupOptions();renderSelection();
+}
+function refreshMatchupOptions(){
+ const selects=[...$("matchupSlots").querySelectorAll("select")];
+ selects.forEach(current=>{const used=new Set(selects.filter(s=>s!==current).map(s=>s.value));[...current.options].forEach(o=>{o.disabled=used.has(o.value)})});
+}
+function syncMatchupSelection(){
+ const values=[...$("matchupSlots").querySelectorAll("select")].map(s=>s.value);
+ selected=new Set(values);if(mode==="2v2"||mode==="ffa")lineup=[...values,...lineup.slice(values.length)];
+}
+$("modeSelect").addEventListener("change",e=>{mode=e.target.value;renderMatchupSlots()});
+$("healthInput").addEventListener("input",e=>$("healthOut").textContent=e.target.value+" HP");
+$("soundBtn").addEventListener("click",()=>{sound=!sound;$("soundBtn").textContent="♫ SOUND: "+(sound?"ON":"OFF");$("soundBtn").setAttribute("aria-pressed",String(sound));if(sound)beep(440,.05)});
+
+function createFighter(def,index,health){
+ const angle=(Math.PI*2*index/selected.size)-Math.PI/2;
+ return {...def,x:550+Math.cos(angle)*245,y:310+Math.sin(angle)*190,vx:(Math.random()-.5)*3,vy:(Math.random()-.5)*3,r:29,hp:health,maxHp:health,rotation:Math.random()*6.28,spin:0.09,attackCd:0,specialCd:2+index*.5,flash:0,alive:true,damageDone:0,hits:0,team:mode==="2v2"?(index<2?0:1):index,knock:0};
+}
+function startBattle(){
+ cancelAnimationFrame(raf);clearTimeout(countdownTimer);battleToken++;const token=battleToken;
+ running=false;matchNumber++;mode=$("modeSelect").value;syncMatchupSelection();
+ const required=mode==="1v1"?2:4;
+ if(selected.size!==required){announce("Choose a different fighter for every slot.");return}
+ speed=Number($("speedSelect").value);arenaStyle=$("arenaSelect").value;over=false;paused=false;elapsed=0;particles=[];floating=[];
+ const health=Number($("healthInput").value), roster=[...selected].map(id=>FIGHTERS.find(f=>f.id===id));
+ if(roster.length!==required||roster.some(f=>!f)){announce("Please fill every fighter slot.");return}
+ fighters=roster.map((f,i)=>createFighter(f,i,health));
+ $("setupPanel").classList.add("hidden");$("battlePanel").classList.remove("hidden");$("resultOverlay").classList.add("hidden");$("countdown").classList.remove("hidden");$("pauseBtn").textContent="Ⅱ PAUSE";
+ $("matchTitle").textContent=mode==="1v1"?"ONE-ON-ONE DUEL":mode==="2v2"?"2V2 TEAM CLASH":"FOUR-WAY FREE FOR ALL";
+ renderStatus();drawArena();let count=3;$("countdown").textContent=count;
+ const tick=()=>{if(token!==battleToken)return;if(count>1){count--;$("countdown").textContent=count;countdownTimer=setTimeout(tick,650)}else{$("countdown").classList.add("hidden");running=true;last=performance.now();raf=requestAnimationFrame(loop)}};
+ countdownTimer=setTimeout(tick,650);
+}
+function alive(){return fighters.filter(f=>f.alive)}
+function enemiesOf(f){return alive().filter(o=>o!==f&&(mode!=="2v2"||o.team!==f.team))}
+function nearest(f){return enemiesOf(f).sort((a,b)=>Math.hypot(a.x-f.x,a.y-f.y)-Math.hypot(b.x-f.x,b.y-f.y))[0]}
+function loop(now){if(!running||paused||over)return;const dt=Math.min((now-last)/16.67,2.2)*speed;last=now;elapsed+=dt/60;update(dt);drawArena();if(mode==="2v2"?new Set(alive().map(f=>f.team)).size<=1:alive().length<=1){finishBattle();return}raf=requestAnimationFrame(loop)}
+function update(dt){
+ const aliveNow=alive();
+ fighters.forEach(f=>{
+  if(!f.alive)return;
+  f.attackCd-=dt/60;f.specialCd-=dt/60;f.flash=Math.max(0,f.flash-dt/60);f.rotation+=f.spin*dt;
+  const target=nearest(f);if(!target)return;
+  let dx=target.x-f.x,dy=target.y-f.y,dist=Math.hypot(dx,dy)||1,ux=dx/dist,uy=dy/dist;
+  // Lightweight steering and elastic arena physics create the bouncing Weapon Ball feel.
+  f.vx+=ux*.075*dt;f.vy+=uy*.075*dt;
+  const max=f.speed*1.55;let v=Math.hypot(f.vx,f.vy);if(v>max){f.vx=f.vx/v*max;f.vy=f.vy/v*max}
+  f.x+=f.vx*dt;f.y+=f.vy*dt;
+  if(f.x<f.r+22){f.x=f.r+22;f.vx=Math.abs(f.vx)*.92;burst(f.x,f.y,f.color,5)}
+  if(f.x>canvas.width-f.r-22){f.x=canvas.width-f.r-22;f.vx=-Math.abs(f.vx)*.92;burst(f.x,f.y,f.color,5)}
+  if(f.y<f.r+22){f.y=f.r+22;f.vy=Math.abs(f.vy)*.92;burst(f.x,f.y,f.color,5)}
+  if(f.y>canvas.height-f.r-22){f.y=canvas.height-f.r-22;f.vy=-Math.abs(f.vy)*.92;burst(f.x,f.y,f.color,5)}
+  // Spin speed slowly rises, making the weapon more dangerous as the fight goes on.
+  f.spin=Math.min(.28,f.spin+.000015*dt);
+  if(dist<f.r+target.r+f.reach*23&&f.attackCd<=0){attack(f,target,false)}
+  if(f.specialCd<=0){special(f,target)}
+ });
+ // Separate overlapping fighters and resolve contact damage.
+ for(let i=0;i<fighters.length;i++)for(let j=i+1;j<fighters.length;j++){
+  const a=fighters[i],b=fighters[j];if(!a.alive||!b.alive)continue;
+  let dx=b.x-a.x,dy=b.y-a.y,d=Math.hypot(dx,dy)||1,min=a.r+b.r+2;
+  if(d<min){let nx=dx/d,ny=dy/d,overlap=min-d;a.x-=nx*overlap*.5;a.y-=ny*overlap*.5;b.x+=nx*overlap*.5;b.y+=ny*overlap*.5;let rel=(b.vx-a.vx)*nx+(b.vy-a.vy)*ny;if(rel<0){a.vx+=nx*rel*.72;b.vx-=nx*rel*.72;a.vy+=ny*rel*.72;b.vy-=ny*rel*.72}}
+ }
+ particles.forEach(p=>{p.x+=p.vx*dt;p.y+=p.vy*dt;p.life-=.025*dt;p.vx*=.985;p.vy*=.985});particles=particles.filter(p=>p.life>0);
+ floating.forEach(p=>{p.y-=.7*dt;p.life-=.018*dt});floating=floating.filter(p=>p.life>0);
+ if(messageTimer>0)messageTimer-=dt/60;else $("battleMessage").textContent="The fighters are reading each other's moves...";
+ if(Math.floor(elapsed*2)!==Math.floor((elapsed-dt/60)*2))renderStatus();
+}
+function attack(a,b,special){
+ const base=a.damage*(1+Math.min(.45,a.hits*.018))*(special?1.8:1);
+ const damage=Math.round(base*(.85+Math.random()*.3));
+ b.hp=Math.max(0,b.hp-damage);b.flash=.16;b.vx+=(b.x-a.x)/(Math.hypot(b.x-a.x,b.y-a.y)||1)*(special?8:4);b.vy+=(b.y-a.y)/(Math.hypot(b.x-a.x,b.y-a.y)||1)*(special?8:4);
+ a.damageDone+=damage;a.hits++;a.attackCd=special?.5:.42;a.spin=Math.min(.28,a.spin+.002);
+ burst((a.x+b.x)/2,(a.y+b.y)/2,special?"#ffffff":a.color,special?25:12);floating.push({x:b.x,y:b.y-32,text:"-"+damage,life:1,color:special?"#fff":a.color});
+ if(sound)beep(special?760:280,.045);
+ if(b.hp<=0){b.alive=false;burst(b.x,b.y,b.color,42);announce(`${b.name} has been knocked out!`)}
+ if(special)announce(`${a.name}: ${a.power}!`);
+}
+function special(f,target){
+ f.specialCd=8+Math.random()*2;
+ if(f.special==="psychic"){
+  fighters.filter(o=>o.alive&&o!==f&&(mode!=="2v2"||o.team!==f.team)&&Math.hypot(o.x-f.x,o.y-f.y)<235).forEach(o=>{attack(f,o,true);o.vx+=(o.x-f.x)*.035;o.vy+=(o.y-f.y)*.035});
+  burst(f.x,f.y,"#ff9bc2",55);
+ }else if(f.special==="turbo"){
+  const d=Math.hypot(target.x-f.x,target.y-f.y)||1;f.vx+=(target.x-f.x)/d*12;f.vy+=(target.y-f.y)/d*12;f.spin=Math.min(.3,f.spin+.07);attack(f,target,true);burst(f.x,f.y,"#5de5ff",35);
+ }else if(f.special==="hair"){
+  fighters.filter(o=>o.alive&&o!==f&&(mode!=="2v2"||o.team!==f.team)&&Math.hypot(o.x-f.x,o.y-f.y)<170).forEach(o=>attack(f,o,true));
+  burst(f.x,f.y,"#ffca59",48);
+ }else{
+  const d=Math.hypot(target.x-f.x,target.y-f.y)||1;f.vx+=(target.x-f.x)/d*6;f.vy+=(target.y-f.y)/d*6;
+  attack(f,target,true);target.flash=.3;burst(target.x,target.y,"#a987ff",50);
+ }
+}
+function announce(text){$("battleMessage").textContent=text;messageTimer=2.4}
+function burst(x,y,color,n){for(let i=0;i<n;i++){const a=Math.random()*Math.PI*2,s=1+Math.random()*5;particles.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,life:.5+Math.random()*.6,color,r:1+Math.random()*3})}}
+function drawArena(){
+ const w=canvas.width,h=canvas.height;ctx.clearRect(0,0,w,h);
+ const bg=ctx.createLinearGradient(0,0,w,h);bg.addColorStop(0,arenaStyle==="cosmic"?"#11102e":arenaStyle==="school"?"#111522":"#10182b");bg.addColorStop(1,"#060812");ctx.fillStyle=bg;ctx.fillRect(0,0,w,h);
+ // Arena grid, glowing perimeter and decorative sigils.
+ ctx.save();ctx.strokeStyle=arenaStyle==="cosmic"?"#7868d633":arenaStyle==="school"?"#69a6a633":"#50dff233";ctx.lineWidth=1;
+ for(let x=22;x<w;x+=44){ctx.beginPath();ctx.moveTo(x,20);ctx.lineTo(x,h-20);ctx.stroke()}for(let y=22;y<h;y+=44){ctx.beginPath();ctx.moveTo(20,y);ctx.lineTo(w-20,y);ctx.stroke()}
+ ctx.strokeStyle="#64dff277";ctx.lineWidth=3;ctx.strokeRect(18,18,w-36,h-36);ctx.shadowBlur=20;ctx.shadowColor="#50dfff";ctx.strokeRect(18,18,w-36,h-36);ctx.restore();
+ ctx.save();ctx.globalAlpha=.13;ctx.strokeStyle="#d5c4ff";ctx.lineWidth=2;for(let r=80;r<360;r+=70){ctx.beginPath();ctx.arc(w/2,h/2,r,0,Math.PI*2);ctx.stroke()}ctx.restore();
+ // Team color marker on floor.
+ fighters.forEach(f=>{if(!f.alive)return;drawFighter(f)});
+ particles.forEach(p=>{ctx.globalAlpha=Math.max(0,p.life);ctx.fillStyle=p.color;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill()});ctx.globalAlpha=1;
+ floating.forEach(p=>{ctx.globalAlpha=Math.max(0,p.life);ctx.fillStyle=p.color;ctx.font="900 20px Orbitron";ctx.textAlign="center";ctx.shadowBlur=12;ctx.shadowColor=p.color;ctx.fillText(p.text,p.x,p.y);ctx.shadowBlur=0});ctx.globalAlpha=1;
+ ctx.textAlign="left";ctx.fillStyle="#ffffff55";ctx.font="700 11px Orbitron";ctx.fillText("SPIRIT ARENA // MATCH "+String(matchNumber).padStart(3,"0"),32,canvas.height-30);
+}
+function drawFighter(f){
+ const c=ctx; c.save();c.translate(f.x,f.y);
+ c.shadowBlur=24;c.shadowColor=f.color;c.fillStyle=f.color;c.globalAlpha=.16;c.beginPath();c.arc(0,0,f.r+13,0,Math.PI*2);c.fill();c.globalAlpha=1;c.shadowBlur=0;
+ // Each fighter has a unique rotating weapon silhouette, not just a recolored arc.
+ drawSignatureWeapon(c,f);
+ const g=c.createRadialGradient(-10,-12,2,0,0,f.r+2);g.addColorStop(0,"#ffffff");g.addColorStop(.18,f.flash?"#fff":f.color);g.addColorStop(1,"#151522");c.fillStyle=g;c.beginPath();c.arc(0,0,f.r,0,Math.PI*2);c.fill();c.lineWidth=3;c.strokeStyle=f.color;c.stroke();
+ // Okarun's swept-back, sharply spiked Turbo Granny transformation hair
+ // is drawn over the orb so he is recognizable even before reading the label.
+ if(f.id==="okarun")drawOkarunHair(c,f);
+ c.fillStyle="#10121b";c.font="900 20px Orbitron";c.textAlign="center";c.textBaseline="middle";c.fillText(f.short,0,1);
+ c.restore();
+}
+
+function drawOkarunHair(c,f){
+ c.save();c.lineJoin="round";c.shadowColor="#5de5ff";c.shadowBlur=8;
+ // Dark swept-back crown with distinct upward spikes and pale turbo streaks.
+ c.fillStyle="#10131e";c.strokeStyle="#05070d";c.lineWidth=2.5;
+ c.beginPath();c.moveTo(-f.r*.82,-f.r*.52);
+ c.lineTo(-f.r*.95,-f.r*1.08);c.lineTo(-f.r*.48,-f.r*.88);
+ c.lineTo(-f.r*.28,-f.r*1.42);c.lineTo(f.r*.02,-f.r*.98);
+ c.lineTo(f.r*.34,-f.r*1.48);c.lineTo(f.r*.43,-f.r*.91);
+ c.lineTo(f.r*.82,-f.r*1.2);c.lineTo(f.r*.68,-f.r*.68);
+ c.lineTo(f.r*1.02,-f.r*.42);c.lineTo(f.r*.38,-f.r*.48);
+ c.lineTo(-f.r*.35,-f.r*.42);c.closePath();c.fill();c.stroke();
+ c.strokeStyle="#dffaff";c.lineWidth=3;c.beginPath();
+ c.moveTo(-f.r*.42,-f.r*.72);c.lineTo(-f.r*.28,-f.r*1.12);
+ c.moveTo(f.r*.12,-f.r*.72);c.lineTo(f.r*.32,-f.r*1.18);
+ c.moveTo(f.r*.48,-f.r*.7);c.lineTo(f.r*.72,-f.r*.94);c.stroke();
+ c.strokeStyle="#5de5ff";c.lineWidth=2;c.beginPath();
+ c.moveTo(-f.r*.05,-f.r*.73);c.lineTo(f.r*.08,-f.r*1.02);
+ c.moveTo(f.r*.48,-f.r*.62);c.lineTo(f.r*.82,-f.r*.82);c.stroke();
+ c.restore();
+}
+
+function drawSignatureWeapon(c,f){
+ c.save();c.rotate(f.rotation);c.lineCap="round";c.lineJoin="round";c.strokeStyle=f.color;c.fillStyle=f.color;c.shadowBlur=17;c.shadowColor=f.color;
+ const r=f.r+12;
+ if(f.id==="momo"){
+  // Momo: twin psychic rings with a bright floating focus point.
+  c.lineWidth=5;c.beginPath();c.arc(0,0,r,-1.05,.95);c.stroke();
+  c.lineWidth=2;c.beginPath();c.arc(0,0,r+7,-.88,.78);c.stroke();
+  c.fillStyle="#fff";c.beginPath();c.arc(r+1,0,5,0,Math.PI*2);c.fill();
+  c.fillStyle=f.color;c.beginPath();c.arc(r+8,-7,2.5,0,Math.PI*2);c.fill();
+ }else if(f.id==="okarun"){
+  // Okarun: twin forward-pointing turbo talons with speed fins.
+  c.lineWidth=4;c.beginPath();c.moveTo(r*.45,-r*.9);c.lineTo(r+17,-r*.35);c.lineTo(r+5,0);c.lineTo(r+17,r*.35);c.lineTo(r*.45,r*.9);c.stroke();
+  c.lineWidth=3;c.beginPath();c.moveTo(r*.2,-r*.55);c.lineTo(r+8,-r*.25);c.moveTo(r*.2,r*.55);c.lineTo(r+8,r*.25);c.stroke();
+  c.fillStyle="#fff";c.beginPath();c.moveTo(r+19,-r*.35);c.lineTo(r+29,0);c.lineTo(r+19,r*.35);c.closePath();c.fill();
+ }else if(f.id==="aira"){
+  // Aira: three flowing hair-whip ribbons curling around the orb.
+  [-.24,0,.24].forEach((offset,i)=>{c.lineWidth=4-i*.7;c.beginPath();c.moveTo(r*.15,-r*.72+offset*35);c.bezierCurveTo(r*.85,-r*.95+offset*25,r*1.2,-r*.2+offset*20,r*.78,.05+offset*38);c.bezierCurveTo(r*1.28,r*.55+offset*25,r*.7,r*.92+offset*20,r*.28,r*.72+offset*30);c.stroke()});
+  c.fillStyle="#fff";c.beginPath();c.arc(r*.95,-r*.25,4,0,Math.PI*2);c.fill();
+ }else{
+  // Jiji: paired Evil Eye cursed fists with hooked knuckle spikes.
+  c.lineWidth=5;c.beginPath();c.arc(-r*.48,0,r*.58,-1.15,1.15);c.stroke();
+  c.beginPath();c.arc(r*.48,0,r*.58,Math.PI-.95,Math.PI+.95);c.stroke();
+  [-.62,-.2,.2,.62].forEach((a,i)=>{const side=i<2?-1:1, y=(i%2?1:-1)*r*.28;
+   c.beginPath();c.moveTo(side*r*.62,y);c.lineTo(side*r*1.08,y-r*.16);c.lineTo(side*r*.92,y+r*.22);c.stroke();
+  });
+  c.fillStyle="#fff";c.beginPath();c.arc(r*1.05,-r*.12,4,0,Math.PI*2);c.fill();
+ }
+ c.restore();
+}
+
+function renderStatus(){
+ $("fighterStatus").innerHTML=fighters.map(f=>`<div class="status-card"><div class="status-head"><span style="color:${f.color}">${f.name}</span><span>${Math.ceil(f.hp)} / ${f.maxHp}</span></div><div class="hp-track"><div class="hp-fill" style="width:${Math.max(0,f.hp/f.maxHp*100)}%;background:${f.color}"></div></div><div class="status-meta"><span>${f.alive?"IN THE FIGHT":"KNOCKED OUT"}</span><span>${f.damageDone} DMG</span></div></div>`).join("");
+}
+function finishBattle(){
+ running=false;over=true;cancelAnimationFrame(raf);
+ let winner;
+ if(mode==="2v2"){const survivors=alive();winner=survivors[0];if(winner&&survivors.length>1)$("winnerText").dataset.team="true";}
+ else winner=alive()[0];
+ $("winnerText").textContent=winner?winner.name+" WINS!":"DRAW!";
+ $("winnerText").style.color=winner?winner.color:"#fff";
+ $("resultSub").textContent=winner?`${winner.damageDone} total damage dealt · ${Math.ceil(winner.hp)} HP remaining`:"Everyone went down in the same clash.";
+ $("resultOverlay").classList.remove("hidden");renderStatus();if(sound)beep(880,.2);
+}
+function beep(freq,duration){try{audioCtx=audioCtx||new(window.AudioContext||window.webkitAudioContext)();const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.frequency.value=freq;o.type="sawtooth";g.gain.value=.025;o.connect(g);g.connect(audioCtx.destination);o.start();o.stop(audioCtx.currentTime+duration)}catch(e){}}
+$("startBtn").addEventListener("click",startBattle);
+$("pauseBtn").addEventListener("click",()=>{if(over)return;paused=!paused;if(paused){running=false;cancelAnimationFrame(raf);$("pauseBtn").textContent="▶ RESUME"}else{running=true;last=performance.now();$("pauseBtn").textContent="Ⅱ PAUSE";raf=requestAnimationFrame(loop)}});
+$("restartBtn").addEventListener("click",startBattle);$("againBtn").addEventListener("click",startBattle);
+$("changeBtn").addEventListener("click",()=>{battleToken++;clearTimeout(countdownTimer);running=false;cancelAnimationFrame(raf);$("battlePanel").classList.add("hidden");$("setupPanel").classList.remove("hidden");$("resultOverlay").classList.add("hidden")});
+$("fullBtn").addEventListener("click",()=>{const el=$("battlePanel");if(!document.fullscreenElement)el.requestFullscreen?.();else document.exitFullscreen?.()});
+renderMatchupSlots();drawArena();
+})();
+</script>
+</body>
+</html>
