@@ -7,7 +7,7 @@
 <style>
 *{box-sizing:border-box} :root{--bg:#090b13;--panel:#111522;--line:#282d42;--muted:#9aa3bb;--white:#f4f5fb;--pink:#ff4d91;--cyan:#52e5ff;--gold:#ffc857}
 body{margin:0;background:radial-gradient(ellipse at 50% -20%,#252040 0,#090b13 52%);color:var(--white);font-family:'Rajdhani',sans-serif;min-height:100vh}
-button,select,input{font:inherit}button{cursor:pointer}.app-shell{max-width:1500px;margin:auto;padding:24px 34px 18px}.topbar{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #272a3c;padding:4px 0 20px}.brand{display:flex;gap:13px;align-items:center}.brand-mark{width:48px;height:48px;border:1px solid var(--pink);display:grid;place-items:center;color:var(--pink);font-size:28px;transform:rotate(-8deg);box-shadow:0 0 22px #ff4d9130}.eyebrow{font:700 10px 'Orbitron',sans-serif;letter-spacing:2px;color:var(--cyan)}h1,h2,p{margin:0}h1{font:900 19px 'Orbitron',sans-serif;letter-spacing:1px;margin-top:5px}h1 span{color:var(--pink)}.top-actions{display:flex;align-items:center;gap:20px}.live-dot{font:700 10px 'Orbitron';letter-spacing:1px;color:#89f7c0}.live-dot:before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:#66edaa;margin-right:8px;box-shadow:0 0 10px #66edaa}.ghost-btn{background:#151a29;border:1px solid #363d56;color:#e7e9f3;padding:10px 14px;font:700 11px 'Orbitron';letter-spacing:.5px;border-radius:4px}.ghost-btn:hover{border-color:var(--cyan);color:var(--cyan)}main{padding:34px 0 26px}.intro{margin-bottom:26px}.intro h2{font:900 clamp(34px,5vw,58px)/.98 'Orbitron';letter-spacing:-2px;margin:12px 0}.intro h2 em{font-style:normal;color:var(--pink);text-shadow:0 0 30px #ff4d9155}.intro p{font-size:18px;color:#b2bad0;max-width:600px}.setup-grid{display:grid;grid-template-columns:1.45fr .8fr;gap:18px}.setup-card{background:linear-gradient(145deg,#151a29,#101420);border:1px solid var(--line);padding:22px;border-radius:8px;box-shadow:0 15px 50px #0004}.section-heading{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;font:700 12px 'Orbitron';letter-spacing:1px}.section-heading small{font:600 13px 'Rajdhani';letter-spacing:0;color:var(--muted)}.fighter-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.fighter-card{--accent:#fff;position:relative;text-align:left;display:flex;align-items:center;gap:13px;min-height:110px;padding:14px;background:#0c101b;border:1px solid #30364b;border-radius:6px;color:white;transition:.2s;overflow:hidden}.fighter-card:after{content:"";position:absolute;width:120px;height:120px;border-radius:50%;right:-45px;top:-50px;background:var(--accent);opacity:.08;filter:blur(4px)}.fighter-card.selected{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent),0 0 20px color-mix(in srgb,var(--accent),transparent 80%)}.fighter-orb{width:58px;height:58px;flex:none;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 32% 28%,white 0,#fff8 7%,var(--accent) 30%,#111 100%);border:3px solid var(--accent);box-shadow:0 0 20px color-mix(in srgb,var(--accent),transparent 55%);font:900 19px 'Orbitron';color:#10121c;text-shadow:0 1px 2px #fff}.fighter-info{position:relative;z-index:1}.fighter-info strong{display:block;font:700 16px 'Orbitron';margin-bottom:5px}.fighter-info small{color:#aeb6ca;font-size:13px;display:block}.fighter-info .power-name{color:var(--accent);font-weight:700;margin-top:5px}.select-mark{position:absolute;right:10px;bottom:9px;color:var(--accent);font:700 10px 'Orbitron'}.settings-card{display:flex;flex-direction:column;gap:16px}.settings-card label{display:block;color:#d6d9e5;font-weight:700;font-size:15px}.settings-card select{display:block;width:100%;margin-top:6px;background:#0b101b;color:white;border:1px solid #343b53;padding:11px;border-radius:4px}.range-row{display:flex;align-items:center;gap:14px;margin-top:7px}.range-row input{flex:1;accent-color:var(--pink)}.range-row output{font:700 13px 'Orbitron';color:var(--pink);min-width:65px}.primary-btn{border:0;border-radius:4px;background:linear-gradient(100deg,#ff3f89,#b44cff);color:white;padding:14px 18px;font:900 12px 'Orbitron';letter-spacing:1px;box-shadow:0 8px 22px #ff3f8933}.primary-btn:hover{filter:brightness(1.15);transform:translateY(-1px)}.primary-btn span{float:right}.hint{color:#8791a9;font-size:13px;margin-top:-7px}.hidden{display:none!important}.battle-toolbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}.battle-toolbar h2{font:900 22px 'Orbitron';margin-top:6px}.battle-controls{display:flex;gap:8px}.arena-wrap{position:relative;border:1px solid #333951;border-radius:7px;overflow:hidden;background:#070a13;box-shadow:0 20px 70px #0008}.arena-wrap canvas{display:block;width:100%;height:auto;aspect-ratio:1100/620}.countdown{position:absolute;inset:0;display:grid;place-items:center;font:900 110px 'Orbitron';color:white;text-shadow:0 0 35px var(--pink);background:#05071266}.fighter-status{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:13px}.status-card{background:#131827;border:1px solid #30364b;border-radius:5px;padding:10px 12px}.status-head{display:flex;justify-content:space-between;align-items:center;font:700 12px 'Orbitron';margin-bottom:8px}.hp-track{height:8px;background:#2a3042;border-radius:20px;overflow:hidden}.hp-fill{height:100%;border-radius:20px;transition:width .15s}.status-meta{display:flex;justify-content:space-between;color:#9ca6bd;font-size:12px;margin-top:6px}.battle-footer{display:flex;align-items:center;gap:20px;color:#a6afc4;font-size:12px;margin-top:12px}.battle-footer span:last-child{margin-left:auto;color:#e2e5ef}.legend-dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px}.hit{background:#ff507e}.power{background:#59e9ff}.result-overlay{position:absolute;inset:0;background:#050711d9;display:grid;place-items:center;backdrop-filter:blur(5px)}.result-card{text-align:center;background:#131827;border:1px solid #55506e;padding:36px 46px;border-radius:8px;box-shadow:0 0 60px #b44cff30}.result-card h2{font:900 clamp(26px,5vw,48px) 'Orbitron';color:var(--gold);margin:12px 0}.result-card p{color:#b4bdd0;margin-bottom:20px}.result-card .ghost-btn{margin-left:8px}footer{border-top:1px solid #272a3c;padding-top:16px;display:flex;justify-content:space-between;color:#65708b;font:600 9px 'Orbitron';letter-spacing:1px}
+button,select,input{font:inherit}button{cursor:pointer}.app-shell{max-width:1500px;margin:auto;padding:24px 34px 18px}.topbar{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #272a3c;padding:4px 0 20px}.brand{display:flex;gap:13px;align-items:center}.brand-mark{width:48px;height:48px;border:1px solid var(--pink);display:grid;place-items:center;color:var(--pink);font-size:28px;transform:rotate(-8deg);box-shadow:0 0 22px #ff4d9130}.eyebrow{font:700 10px 'Orbitron',sans-serif;letter-spacing:2px;color:var(--cyan)}h1,h2,p{margin:0}h1{font:900 19px 'Orbitron',sans-serif;letter-spacing:1px;margin-top:5px}h1 span{color:var(--pink)}.top-actions{display:flex;align-items:center;gap:20px}.live-dot{font:700 10px 'Orbitron';letter-spacing:1px;color:#89f7c0}.live-dot:before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:#66edaa;margin-right:8px;box-shadow:0 0 10px #66edaa}.ghost-btn{background:#151a29;border:1px solid #363d56;color:#e7e9f3;padding:10px 14px;font:700 11px 'Orbitron';letter-spacing:.5px;border-radius:4px}.ghost-btn:hover{border-color:var(--cyan);color:var(--cyan)}main{padding:34px 0 26px}.intro{margin-bottom:26px}.intro h2{font:900 clamp(34px,5vw,58px)/.98 'Orbitron';letter-spacing:-2px;margin:12px 0}.intro h2 em{font-style:normal;color:var(--pink);text-shadow:0 0 30px #ff4d9155}.intro p{font-size:18px;color:#b2bad0;max-width:600px}.setup-grid{display:grid;grid-template-columns:1.45fr .8fr;gap:18px}.setup-card{background:linear-gradient(145deg,#151a29,#101420);border:1px solid var(--line);padding:22px;border-radius:8px;box-shadow:0 15px 50px #0004}.section-heading{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;font:700 12px 'Orbitron';letter-spacing:1px}.section-heading small{font:600 13px 'Rajdhani';letter-spacing:0;color:var(--muted)}.fighter-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.fighter-card{--accent:#fff;position:relative;text-align:left;display:flex;align-items:center;gap:13px;min-height:110px;padding:14px;background:#0c101b;border:1px solid #30364b;border-radius:6px;color:white;transition:.2s;overflow:hidden}.fighter-card:after{content:"";position:absolute;width:120px;height:120px;border-radius:50%;right:-45px;top:-50px;background:var(--accent);opacity:.08;filter:blur(4px)}.fighter-card.selected{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent),0 0 20px color-mix(in srgb,var(--accent),transparent 80%)}.fighter-orb{width:58px;height:58px;flex:none;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 32% 28%,white 0,#fff8 7%,var(--accent) 30%,#111 100%);border:3px solid var(--accent);box-shadow:0 0 20px color-mix(in srgb,var(--accent),transparent 55%);font:900 19px 'Orbitron';color:#10121c;text-shadow:0 1px 2px #fff}.fighter-info{position:relative;z-index:1}.fighter-info strong{display:block;font:700 16px 'Orbitron';margin-bottom:5px}.fighter-info small{color:#aeb6ca;font-size:13px;display:block}.fighter-info .power-name{color:var(--accent);font-weight:700;margin-top:5px}.select-mark{position:absolute;right:10px;bottom:9px;color:var(--accent);font:700 10px 'Orbitron'}.settings-card{display:flex;flex-direction:column;gap:16px}.settings-card label{display:block;color:#d6d9e5;font-weight:700;font-size:15px}.settings-card select{display:block;width:100%;margin-top:6px;background:#0b101b;color:white;border:1px solid #343b53;padding:11px;border-radius:4px}.range-row{display:flex;align-items:center;gap:14px;margin-top:7px}.range-row input{flex:1;accent-color:var(--pink)}.range-row output{font:700 13px 'Orbitron';color:var(--pink);min-width:65px}.primary-btn{border:0;border-radius:4px;background:linear-gradient(100deg,#ff3f89,#b44cff);color:white;padding:14px 18px;font:900 12px 'Orbitron';letter-spacing:1px;box-shadow:0 8px 22px #ff3f8933}.primary-btn:hover{filter:brightness(1.15);transform:translateY(-1px)}.primary-btn span{float:right}.hint{color:#8791a9;font-size:13px;margin-top:-7px}.hidden{display:none!important}.battle-toolbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}.battle-toolbar h2{font:900 22px 'Orbitron';margin-top:6px}.battle-controls{display:flex;gap:8px}.arena-wrap{position:relative;border:1px solid #333951;border-radius:7px;overflow:hidden;background:#070a13;box-shadow:0 20px 70px #0008}.arena-wrap canvas{display:block;width:100%;height:auto;aspect-ratio:1100/620}.countdown{position:absolute;inset:0;display:grid;place-items:center;font:900 110px 'Orbitron';color:white;text-shadow:0 0 35px var(--pink);background:#05071266}.fighter-status{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:13px}.status-card{background:#131827;border:1px solid #30364b;border-radius:5px;padding:10px 12px}.status-head{display:flex;justify-content:space-between;align-items:center;font:700 12px 'Orbitron';margin-bottom:8px}.hp-track{height:8px;background:#2a3042;border-radius:20px;overflow:hidden}.hp-fill{height:100%;border-radius:20px;transition:width .15s}.status-meta{display:flex;justify-content:space-between;color:#9ca6bd;font-size:12px;margin-top:6px}.ability-track{height:5px;background:#2a3042;border-radius:20px;overflow:hidden;margin-top:8px}.ability-fill{height:100%;border-radius:20px;transition:width .15s}.ability-label{display:flex;justify-content:space-between;color:#aeb6ca;font-size:10px;margin-top:5px}.battle-footer{display:flex;align-items:center;gap:20px;color:#a6afc4;font-size:12px;margin-top:12px}.battle-footer span:last-child{margin-left:auto;color:#e2e5ef}.legend-dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px}.hit{background:#ff507e}.power{background:#59e9ff}.result-overlay{position:absolute;inset:0;background:#050711d9;display:grid;place-items:center;backdrop-filter:blur(5px)}.result-card{text-align:center;background:#131827;border:1px solid #55506e;padding:36px 46px;border-radius:8px;box-shadow:0 0 60px #b44cff30}.result-card h2{font:900 clamp(26px,5vw,48px) 'Orbitron';color:var(--gold);margin:12px 0}.result-card p{color:#b4bdd0;margin-bottom:20px}.result-card .ghost-btn{margin-left:8px}footer{border-top:1px solid #272a3c;padding-top:16px;display:flex;justify-content:space-between;color:#65708b;font:600 9px 'Orbitron';letter-spacing:1px}
 @media(max-width:850px){.app-shell{padding:18px}.setup-grid{grid-template-columns:1fr}.top-actions .live-dot{display:none}.fighter-status{grid-template-columns:repeat(2,1fr)}.battle-toolbar{align-items:flex-start;gap:12px;flex-direction:column}.battle-controls{flex-wrap:wrap}.battle-footer{flex-wrap:wrap}.battle-footer span:last-child{margin-left:0;width:100%}}
 @media(max-width:520px){.fighter-grid{grid-template-columns:1fr}.topbar{align-items:flex-start}.brand-mark{width:38px;height:38px}.brand h1{font-size:14px}.top-actions{gap:5px}.top-actions .ghost-btn{font-size:9px;padding:8px}.app-shell{padding:14px}.setup-card{padding:15px}.section-heading small{font-size:11px}.result-card{padding:25px 16px}.result-card .ghost-btn{margin:8px 0 0}footer{gap:8px;flex-direction:column}}
 
@@ -77,7 +77,7 @@ const FIGHTERS = [
 ];
 const $ = id => document.getElementById(id);
 const canvas=$("arena"),ctx=canvas.getContext("2d");
-let selected=new Set(["momo","okarun"]), lineup=["momo","okarun","aira","jiji"], fighters=[], running=false, paused=false, over=false, raf=0, countdownTimer=0, battleToken=0, last=0, elapsed=0, speed=1, mode="1v1", sound=false, audioCtx=null, particles=[], floating=[], arenaStyle="neon", messageTimer=0, matchNumber=0;
+let selected=new Set(["momo","okarun"]), lineup=["momo","okarun","aira","jiji"], fighters=[], running=false, paused=false, over=false, raf=0, countdownTimer=0, battleToken=0, last=0, elapsed=0, speed=1, mode="1v1", sound=false, audioCtx=null, particles=[], floating=[], projectiles=[], binds=[], arenaStyle="neon", messageTimer=0, matchNumber=0;
 
 function renderSelection(){
  const grid=$("fighterGrid"); grid.innerHTML="";
@@ -117,14 +117,14 @@ $("soundBtn").addEventListener("click",()=>{sound=!sound;$("soundBtn").textConte
 
 function createFighter(def,index,health){
  const angle=(Math.PI*2*index/selected.size)-Math.PI/2;
- return {...def,x:550+Math.cos(angle)*245,y:310+Math.sin(angle)*190,vx:(Math.random()-.5)*3,vy:(Math.random()-.5)*3,r:def.id==="okarun"?44:29,hp:health,maxHp:health,rotation:Math.random()*6.28,spin:0.09,attackCd:0,specialCd:2+index*.5,flash:0,alive:true,damageDone:0,hits:0,team:mode==="2v2"?(index<2?0:1):index,knock:0};
+ return {...def,x:550+Math.cos(angle)*245,y:310+Math.sin(angle)*190,vx:(Math.random()-.5)*3,vy:(Math.random()-.5)*3,r:def.id==="okarun"?44:29,hp:health,maxHp:health,rotation:Math.random()*6.28,spin:0.09,attackCd:0,specialCd:def.id==="momo"?999:def.id==="aira"?8:def.id==="jiji"?3.6:1.1,flash:0,alive:true,damageDone:0,hits:0,team:mode==="2v2"?(index<2?0:1):index,knock:0,charge:0,dashCharges:2,bound:0};
 }
 function startBattle(){
  cancelAnimationFrame(raf);clearTimeout(countdownTimer);battleToken++;const token=battleToken;
  running=false;matchNumber++;mode=$("modeSelect").value;syncMatchupSelection();
  const required=mode==="1v1"?2:4;
  if(selected.size!==required){announce("Choose a different fighter for every slot.");return}
- speed=Number($("speedSelect").value);arenaStyle=$("arenaSelect").value;over=false;paused=false;elapsed=0;particles=[];floating=[];
+ speed=Number($("speedSelect").value);arenaStyle=$("arenaSelect").value;over=false;paused=false;elapsed=0;particles=[];floating=[];projectiles=[];binds=[];
  const health=Number($("healthInput").value), roster=[...selected].map(id=>FIGHTERS.find(f=>f.id===id));
  if(roster.length!==required||roster.some(f=>!f)){announce("Please fill every fighter slot.");return}
  fighters=roster.map((f,i)=>createFighter(f,i,health));
@@ -143,6 +143,7 @@ function update(dt){
  fighters.forEach(f=>{
   if(!f.alive)return;
   f.attackCd-=dt/60;f.specialCd-=dt/60;f.flash=Math.max(0,f.flash-dt/60);f.rotation+=f.spin*dt;
+  if(f.bound>0){f.bound=Math.max(0,f.bound-dt/60);f.vx*=.72;f.vy*=.72;return}
   const target=nearest(f);if(!target)return;
   let dx=target.x-f.x,dy=target.y-f.y,dist=Math.hypot(dx,dy)||1,ux=dx/dist,uy=dy/dist;
   // Lightweight steering and elastic arena physics create the bouncing Weapon Ball feel.
@@ -158,7 +159,8 @@ function update(dt){
   const targetHitRadius=target.r+(target.id==="momo"?18:0);
   // Momo's visible body was being missed by close-range contact checks. Give her a forgiving collision margin so every fighter can land hits consistently.
   if(dist<f.r+targetHitRadius+18+(f.id==="okarun"?8:f.reach*30)&&f.attackCd<=0){attack(f,target,false)}
-  if(f.specialCd<=0){special(f,target)}
+  if(f.id==="momo"&&f.charge>=100){momoBigBlast(f)}
+  if(f.specialCd<=0&&f.id!=="momo"&&(f.id!=="okarun"||f.dashCharges>0)){special(f,target)}
  });
  // Separate overlapping fighters and resolve contact damage.
  for(let i=0;i<fighters.length;i++)for(let j=i+1;j<fighters.length;j++){
@@ -166,6 +168,12 @@ function update(dt){
   let dx=b.x-a.x,dy=b.y-a.y,d=Math.hypot(dx,dy)||1,min=a.r+b.r+2;
   if(d<min){let nx=dx/d,ny=dy/d,overlap=min-d;a.x-=nx*overlap*.5;a.y-=ny*overlap*.5;b.x+=nx*overlap*.5;b.y+=ny*overlap*.5;let rel=(b.vx-a.vx)*nx+(b.vy-a.vy)*ny;if(rel<0){a.vx+=nx*rel*.72;b.vx-=nx*rel*.72;a.vy+=ny*rel*.72;b.vy-=ny*rel*.72}}
  }
+ // Move projectiles and resolve hits against opponents.
+ projectiles.forEach(p=>{p.x+=p.vx*dt;p.y+=p.vy*dt;p.life-=dt/60;
+  const victim=alive().find(o=>o!==p.owner&&(mode!=="2v2"||o.team!==p.owner.team)&&Math.hypot(o.x-p.x,o.y-p.y)<o.r+p.r);
+  if(victim){const d=Math.hypot(victim.x-p.x,victim.y-p.y)||1;victim.hp=Math.max(0,victim.hp-p.damage);victim.flash=.22;victim.vx+=(victim.x-p.x)/d*8;victim.vy+=(victim.y-p.y)/d*8;p.life=0;p.owner.damageDone+=p.damage;p.owner.hits++;floating.push({x:victim.x,y:victim.y-30,text:"-"+p.damage,life:1,color:"#a987ff"});burst(p.x,p.y,"#a987ff",34);if(victim.hp<=0){victim.alive=false;announce(victim.name+" was struck by the Evil Eye orb!")}if(sound)beep(620,.06)}
+ });projectiles=projectiles.filter(p=>p.life>0);
+ binds.forEach(b=>b.life-=dt/60);binds=binds.filter(b=>b.life>0&&b.to.alive);
  particles.forEach(p=>{p.x+=p.vx*dt;p.y+=p.vy*dt;p.life-=.025*dt;p.vx*=.985;p.vy*=.985});particles=particles.filter(p=>p.life>0);
  floating.forEach(p=>{p.y-=.7*dt;p.life-=.018*dt});floating=floating.filter(p=>p.life>0);
  if(messageTimer>0)messageTimer-=dt/60;else $("battleMessage").textContent="The fighters are reading each other's moves...";
@@ -173,28 +181,43 @@ function update(dt){
 }
 function attack(a,b,special){
  const base=a.damage*(1+Math.min(.45,a.hits*.018))*(special?1.8:1);
- const damage=Math.round(base*(.85+Math.random()*.3));
+ const multiplier=special?(a.id==="momo"?3.2:a.id==="okarun"?2.7:1.8):1;
+ const damage=Math.round(base*multiplier*(.85+Math.random()*.3));
  b.hp=Math.max(0,b.hp-damage);b.flash=.16;b.vx+=(b.x-a.x)/(Math.hypot(b.x-a.x,b.y-a.y)||1)*(special?8:4);b.vy+=(b.y-a.y)/(Math.hypot(b.x-a.x,b.y-a.y)||1)*(special?8:4);
  a.damageDone+=damage;a.hits++;a.attackCd=special?.5:.42;a.spin=Math.min(.28,a.spin+.002);
  burst((a.x+b.x)/2,(a.y+b.y)/2,special?"#ffffff":a.color,special?25:12);floating.push({x:b.x,y:b.y-32,text:"-"+damage,life:1,color:special?"#fff":a.color});
+ if(a.id==="momo"&&!special){a.charge=Math.min(100,a.charge+damage*1.15)}
  if(sound)beep(special?760:280,.045);
  if(b.hp<=0){b.alive=false;burst(b.x,b.y,b.color,42);announce(`${b.name} has been knocked out!`)}
  if(special)announce(`${a.name}: ${a.power}!`);
 }
 function special(f,target){
- f.specialCd=8+Math.random()*2;
- if(f.special==="psychic"){
-  fighters.filter(o=>o.alive&&o!==f&&(mode!=="2v2"||o.team!==f.team)&&Math.hypot(o.x-f.x,o.y-f.y)<235).forEach(o=>{attack(f,o,true);o.vx+=(o.x-f.x)*.035;o.vy+=(o.y-f.y)*.035});
-  burst(f.x,f.y,"#ff9bc2",55);
- }else if(f.special==="turbo"){
-  const d=Math.hypot(target.x-f.x,target.y-f.y)||1;f.vx+=(target.x-f.x)/d*12;f.vy+=(target.y-f.y)/d*12;f.spin=Math.min(.3,f.spin+.07);attack(f,target,true);burst(f.x,f.y,"#5de5ff",35);
- }else if(f.special==="hair"){
-  fighters.filter(o=>o.alive&&o!==f&&(mode!=="2v2"||o.team!==f.team)&&Math.hypot(o.x-f.x,o.y-f.y)<170).forEach(o=>attack(f,o,true));
-  burst(f.x,f.y,"#ffca59",48);
- }else{
-  const d=Math.hypot(target.x-f.x,target.y-f.y)||1;f.vx+=(target.x-f.x)/d*6;f.vy+=(target.y-f.y)/d*6;
-  attack(f,target,true);target.flash=.3;burst(target.x,target.y,"#a987ff",50);
+ if(f.id==="aira"){
+  // Aira's hair extends, binds one opponent, and roots them for a short time every 8 seconds.
+  f.specialCd=8;target.bound=1.65;target.vx*=.18;target.vy*=.18;
+  binds.push({from:f,to:target,life:1.65});
+  attack(f,target,true);announce("Aira's hair bind! "+target.name+" is trapped!");
+  burst(target.x,target.y,"#ff4dba",30);
+ }else if(f.id==="okarun"){
+  // Exactly two high-damage Turbo dashes per match; charges do not regenerate.
+  f.dashCharges--;f.specialCd=f.dashCharges>0?1.2:999;
+  const d=Math.hypot(target.x-f.x,target.y-f.y)||1;
+  f.vx+=(target.x-f.x)/d*19;f.vy+=(target.y-f.y)/d*19;
+  f.spin=Math.min(.34,f.spin+.1);attack(f,target,true);
+  burst(f.x,f.y,"#ff343b",42);announce("Okarun Turbo Dash! "+f.dashCharges+" dash(es) remaining.");
+ }else if(f.id==="jiji"){
+  // Jiji launches his Evil Eye orb as a projectile every 3.6 seconds.
+  f.specialCd=3.6;const d=Math.hypot(target.x-f.x,target.y-f.y)||1;
+  projectiles.push({x:f.x,y:f.y,vx:(target.x-f.x)/d*10,vy:(target.y-f.y)/d*10,owner:f,life:2.4,r:13,damage:27});
+  burst(f.x,f.y,"#a987ff",18);announce("Jiji fires the Evil Eye orb!");
  }
+}
+function momoBigBlast(f){
+ // Momo charges her meter by landing hits; at 100%, she releases a large psychic shockwave.
+ f.charge=0;f.specialCd=999;announce("MOMO: PSYCHIC OVERDRIVE!");
+ fighters.filter(o=>o.alive&&o!==f&&(mode!=="2v2"||o.team!==f.team)&&Math.hypot(o.x-f.x,o.y-f.y)<520)
+  .forEach(o=>{attack(f,o,true);const d=Math.hypot(o.x-f.x,o.y-f.y)||1;o.vx+=(o.x-f.x)/d*10;o.vy+=(o.y-f.y)/d*10});
+ burst(f.x,f.y,"#48e68a",105);if(sound)beep(980,.22);
 }
 function announce(text){$("battleMessage").textContent=text;messageTimer=2.4}
 function burst(x,y,color,n){for(let i=0;i<n;i++){const a=Math.random()*Math.PI*2,s=1+Math.random()*5;particles.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,life:.5+Math.random()*.6,color,r:1+Math.random()*3})}}
@@ -208,6 +231,8 @@ function drawArena(){
  ctx.save();ctx.globalAlpha=.13;ctx.strokeStyle="#d5c4ff";ctx.lineWidth=2;for(let r=80;r<360;r+=70){ctx.beginPath();ctx.arc(w/2,h/2,r,0,Math.PI*2);ctx.stroke()}ctx.restore();
  // Team color marker on floor.
  fighters.forEach(f=>{if(!f.alive)return;drawFighter(f)});
+ binds.forEach(b=>{ctx.save();ctx.strokeStyle="#ff4dba";ctx.shadowColor="#ff4dba";ctx.shadowBlur=18;ctx.lineWidth=8;ctx.lineCap="round";ctx.beginPath();ctx.moveTo(b.from.x,b.from.y);ctx.quadraticCurveTo((b.from.x+b.to.x)/2,(b.from.y+b.to.y)/2-35,b.to.x,b.to.y);ctx.stroke();ctx.restore()});
+ projectiles.forEach(p=>{ctx.save();ctx.shadowColor="#a987ff";ctx.shadowBlur=25;const g=ctx.createRadialGradient(p.x-4,p.y-4,1,p.x,p.y,p.r);g.addColorStop(0,"#fff");g.addColorStop(.3,"#d8aaff");g.addColorStop(1,"#6820c9");ctx.fillStyle=g;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill();ctx.strokeStyle="#f0d9ff";ctx.lineWidth=2;ctx.stroke();ctx.restore()});
  particles.forEach(p=>{ctx.globalAlpha=Math.max(0,p.life);ctx.fillStyle=p.color;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill()});ctx.globalAlpha=1;
  floating.forEach(p=>{ctx.globalAlpha=Math.max(0,p.life);ctx.fillStyle=p.color;ctx.font="900 20px Orbitron";ctx.textAlign="center";ctx.shadowBlur=12;ctx.shadowColor=p.color;ctx.fillText(p.text,p.x,p.y);ctx.shadowBlur=0});ctx.globalAlpha=1;
  ctx.textAlign="left";ctx.fillStyle="#ffffff55";ctx.font="700 11px Orbitron";ctx.fillText("SPIRIT ARENA // MATCH "+String(matchNumber).padStart(3,"0"),32,canvas.height-30);
@@ -338,7 +363,10 @@ function drawJijiOrb(c,f){
 }
 
 function renderStatus(){
- $("fighterStatus").innerHTML=fighters.map(f=>`<div class="status-card"><div class="status-head"><span style="color:${f.color}">${f.name}</span><span>${Math.ceil(f.hp)} / ${f.maxHp}</span></div><div class="hp-track"><div class="hp-fill" style="width:${Math.max(0,f.hp/f.maxHp*100)}%;background:${f.color}"></div></div><div class="status-meta"><span>${f.alive?"IN THE FIGHT":"KNOCKED OUT"}</span><span>${f.damageDone} DMG</span></div></div>`).join("");
+ $("fighterStatus").innerHTML=fighters.map(f=>{
+  const resource=f.id==="momo"?`<div class="ability-label"><span>PSYCHIC BLAST</span><span>${Math.floor(f.charge)}%</span></div><div class="ability-track"><div class="ability-fill" style="width:${f.charge}%;background:#48e68a"></div></div>`:f.id==="okarun"?`<div class="ability-label"><span>TURBO DASHES</span><span>${f.dashCharges}/2</span></div><div class="ability-track"><div class="ability-fill" style="width:${f.dashCharges*50}%;background:#ff343b"></div></div>`:f.id==="aira"?`<div class="ability-label"><span>HAIR BIND</span><span>${Math.max(0,f.specialCd).toFixed(1)}s</span></div>`:`<div class="ability-label"><span>EVIL EYE ORB</span><span>${Math.max(0,f.specialCd).toFixed(1)}s</span></div>`;
+  return `<div class="status-card"><div class="status-head"><span style="color:${f.color}">${f.name}</span><span>${Math.ceil(f.hp)} / ${f.maxHp}</span></div><div class="hp-track"><div class="hp-fill" style="width:${Math.max(0,f.hp/f.maxHp*100)}%;background:${f.color}"></div></div><div class="status-meta"><span>${f.alive?"IN THE FIGHT":"KNOCKED OUT"}</span><span>${f.damageDone} DMG</span></div>${resource}</div>`;
+ }).join("");
 }
 function finishBattle(){
  running=false;over=true;cancelAnimationFrame(raf);
