@@ -70,7 +70,7 @@ button,select,input{font:inherit}button{cursor:pointer}.app-shell{max-width:1500
 // Fighter data is the single source of truth for names, colors, stats, and signature powers.
 // Match state (position, velocity, health, cooldowns) is created fresh for every battle.
 const FIGHTERS = [
- {id:"momo",name:"Momo Ayase",short:"桃",color:"#48e68a",team:0,weapon:"Psychic Force Rings",power:"Psychokinesis",desc:"Controls space and shoves rivals away.",hp:200,damage:13,speed:2.5,reach:1.05,special:"psychic"},
+ {id:"momo",name:"Momo Ayase",short:"桃",color:"#48e68a",team:0,weapon:"Psychic Hand",power:"Psychokinesis",desc:"Controls space and shoves rivals away.",hp:200,damage:13,speed:2.5,reach:1.05,special:"psychic"},
  {id:"okarun",name:"Okarun",short:"速",color:"#ff343b",team:1,weapon:"No weapon · Full-body Turbo Form",power:"Turbo Burst",desc:"His entire transformed body is the hitbox; attacks land through full-body contact.",hp:200,damage:12,speed:3.5,reach:0,special:"turbo"},
  {id:"aira",name:"Aira Shiratori",short:"愛",color:"#ff4dba",team:0,weapon:"Acro-Hair Whips",power:"Crimson Halo",desc:"Whips a wide arc around her body.",hp:200,damage:11,speed:2.8,reach:1.3,special:"hair"},
  {id:"jiji",name:"Jiji",short:"邪",color:"#a987ff",team:1,weapon:"Purple Evil Eye Orb",power:"Evil Eye Surge",desc:"A purple cursed-energy orb hovers beside him and erupts in a heavy burst.",hp:200,damage:15,speed:2.2,reach:0.35,special:"evil"}
@@ -272,11 +272,48 @@ function drawSignatureWeapon(c,f){
  c.save();c.rotate(f.rotation);c.lineCap="round";c.lineJoin="round";c.strokeStyle=f.color;c.fillStyle=f.color;c.shadowBlur=17;c.shadowColor=f.color;
  const r=f.r+12;
  if(f.id==="momo"){
-  // Momo: twin psychic rings with a bright floating focus point.
-  c.lineWidth=5;c.beginPath();c.arc(0,0,r,-1.05,.95);c.stroke();
-  c.lineWidth=2;c.beginPath();c.arc(0,0,r+7,-.88,.78);c.stroke();
-  c.fillStyle="#fff";c.beginPath();c.arc(r+1,0,5,0,Math.PI*2);c.fill();
-  c.fillStyle=f.color;c.beginPath();c.arc(r+8,-7,2.5,0,Math.PI*2);c.fill();
+  // Momo: a large turquoise psychic hand, inspired by her outstretched psychokinetic palm.
+  // It rotates with her fighter so the hand reads as her signature weapon in every direction.
+  c.save();c.translate(r*.35,0);
+  c.shadowColor="#8fffee";c.shadowBlur=24;
+  c.fillStyle="rgba(111,224,211,.78)";c.strokeStyle="#b9fff4";c.lineWidth=2.8;
+  c.beginPath();
+  // Wrist and palm.
+  c.moveTo(-r*.28,-r*.43);
+  c.quadraticCurveTo(r*.12,-r*.58,r*.48,-r*.43);
+  c.quadraticCurveTo(r*.75,-r*.35,r*.88,-r*.12);
+  // Index finger.
+  c.lineTo(r*1.52,-r*.83);
+  c.quadraticCurveTo(r*1.72,-r*1.02,r*1.84,-r*.88);
+  c.quadraticCurveTo(r*1.94,-r*.76,r*1.77,-r*.59);
+  // Middle finger.
+  c.lineTo(r*1.25,-r*.05);
+  c.lineTo(r*1.87,-r*.49);
+  c.quadraticCurveTo(r*2.08,-r*.61,r*2.17,-r*.43);
+  c.quadraticCurveTo(r*2.24,-r*.27,r*2.03,-r*.12);
+  // Ring and little fingers.
+  c.lineTo(r*1.28,r*.22);
+  c.lineTo(r*1.78,r*.03);
+  c.quadraticCurveTo(r*1.99,r*.01,r*2.04,r*.19);
+  c.quadraticCurveTo(r*2.07,r*.36,r*1.84,r*.45);
+  c.lineTo(r*1.17,r*.62);
+  c.lineTo(r*1.48,r*.57);
+  c.quadraticCurveTo(r*1.68,r*.63,r*1.64,r*.81);
+  c.quadraticCurveTo(r*1.59,r*.99,r*1.35,r*.95);
+  // Thumb and lower palm.
+  c.lineTo(r*.72,r*.69);
+  c.quadraticCurveTo(r*.48,r*.92,r*.22,r*.78);
+  c.lineTo(-r*.2,r*.52);
+  c.quadraticCurveTo(-r*.45,r*.12,-r*.28,-r*.43);
+  c.closePath();c.fill();c.stroke();
+  c.shadowBlur=0;
+  // Palm creases and glowing psychic contour lines.
+  c.strokeStyle="rgba(39,139,139,.72)";c.lineWidth=2;c.beginPath();
+  c.moveTo(r*.35,-r*.26);c.quadraticCurveTo(r*.78,r*.02,r*.82,r*.43);
+  c.moveTo(r*.12,r*.12);c.quadraticCurveTo(r*.48,r*.32,r*.67,r*.56);
+  c.moveTo(r*.83,-r*.12);c.quadraticCurveTo(r*1.08,-r*.22,r*1.28,-r*.37);
+  c.stroke();
+  c.restore();
  }else if(f.id==="aira"){
   // Aira: three flowing hair-whip ribbons curling around the orb.
   [-.24,0,.24].forEach((offset,i)=>{c.lineWidth=4-i*.7;c.beginPath();c.moveTo(r*.15,-r*.72+offset*35);c.bezierCurveTo(r*.85,-r*.95+offset*25,r*1.2,-r*.2+offset*20,r*.78,.05+offset*38);c.bezierCurveTo(r*1.28,r*.55+offset*25,r*.7,r*.92+offset*20,r*.28,r*.72+offset*30);c.stroke()});
