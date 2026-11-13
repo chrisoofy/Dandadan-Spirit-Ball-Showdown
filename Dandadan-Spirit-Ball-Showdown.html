@@ -71,7 +71,7 @@ button,select,input{font:inherit}button{cursor:pointer}.app-shell{max-width:1500
 // Match state (position, velocity, health, cooldowns) is created fresh for every battle.
 const FIGHTERS = [
  {id:"momo",name:"Momo Ayase",short:"桃",color:"#ff5a9b",team:0,weapon:"Psychic Force Rings",power:"Psychokinesis",desc:"Controls space and shoves rivals away.",hp:200,damage:13,speed:2.5,reach:1.05,special:"psychic"},
- {id:"okarun",name:"Okarun",short:"速",color:"#5de5ff",team:1,weapon:"Turbo Speed Claws",power:"Turbo Burst",desc:"Dashes through the arena at wild speed.",hp:200,damage:10,speed:3.5,reach:.9,special:"turbo"},
+ {id:"okarun",name:"Okarun",short:"速",color:"#ff343b",team:1,weapon:"No weapon · Full-body Turbo Form",power:"Turbo Burst",desc:"His entire transformed body is the hitbox; attacks land through full-body contact.",hp:200,damage:12,speed:3.5,reach:0,special:"turbo"},
  {id:"aira",name:"Aira Shiratori",short:"愛",color:"#ffca59",team:0,weapon:"Acro-Hair Whips",power:"Crimson Halo",desc:"Whips a wide arc around her body.",hp:200,damage:11,speed:2.8,reach:1.3,special:"hair"},
  {id:"jiji",name:"Jiji",short:"邪",color:"#a987ff",team:1,weapon:"Evil Eye Cursed Fists",power:"Evil Eye Surge",desc:"Unleashes a heavy burst of cursed energy.",hp:200,damage:15,speed:2.2,reach:1.15,special:"evil"}
 ];
@@ -117,7 +117,7 @@ $("soundBtn").addEventListener("click",()=>{sound=!sound;$("soundBtn").textConte
 
 function createFighter(def,index,health){
  const angle=(Math.PI*2*index/selected.size)-Math.PI/2;
- return {...def,x:550+Math.cos(angle)*245,y:310+Math.sin(angle)*190,vx:(Math.random()-.5)*3,vy:(Math.random()-.5)*3,r:29,hp:health,maxHp:health,rotation:Math.random()*6.28,spin:0.09,attackCd:0,specialCd:2+index*.5,flash:0,alive:true,damageDone:0,hits:0,team:mode==="2v2"?(index<2?0:1):index,knock:0};
+ return {...def,x:550+Math.cos(angle)*245,y:310+Math.sin(angle)*190,vx:(Math.random()-.5)*3,vy:(Math.random()-.5)*3,r:def.id==="okarun"?44:29,hp:health,maxHp:health,rotation:Math.random()*6.28,spin:0.09,attackCd:0,specialCd:2+index*.5,flash:0,alive:true,damageDone:0,hits:0,team:mode==="2v2"?(index<2?0:1):index,knock:0};
 }
 function startBattle(){
  cancelAnimationFrame(raf);clearTimeout(countdownTimer);battleToken++;const token=battleToken;
@@ -155,7 +155,7 @@ function update(dt){
   if(f.y>canvas.height-f.r-22){f.y=canvas.height-f.r-22;f.vy=-Math.abs(f.vy)*.92;burst(f.x,f.y,f.color,5)}
   // Spin speed slowly rises, making the weapon more dangerous as the fight goes on.
   f.spin=Math.min(.28,f.spin+.000015*dt);
-  if(dist<f.r+target.r+f.reach*23&&f.attackCd<=0){attack(f,target,false)}
+  if(dist<f.r+target.r+(f.id==="okarun"?0:f.reach*23)&&f.attackCd<=0){attack(f,target,false)}
   if(f.specialCd<=0){special(f,target)}
  });
  // Separate overlapping fighters and resolve contact damage.
@@ -211,36 +211,58 @@ function drawArena(){
  ctx.textAlign="left";ctx.fillStyle="#ffffff55";ctx.font="700 11px Orbitron";ctx.fillText("SPIRIT ARENA // MATCH "+String(matchNumber).padStart(3,"0"),32,canvas.height-30);
 }
 function drawFighter(f){
- const c=ctx; c.save();c.translate(f.x,f.y);
- c.shadowBlur=24;c.shadowColor=f.color;c.fillStyle=f.color;c.globalAlpha=.16;c.beginPath();c.arc(0,0,f.r+13,0,Math.PI*2);c.fill();c.globalAlpha=1;c.shadowBlur=0;
- // Each fighter has a unique rotating weapon silhouette, not just a recolored arc.
- drawSignatureWeapon(c,f);
- const g=c.createRadialGradient(-10,-12,2,0,0,f.r+2);g.addColorStop(0,"#ffffff");g.addColorStop(.18,f.flash?"#fff":f.color);g.addColorStop(1,"#151522");c.fillStyle=g;c.beginPath();c.arc(0,0,f.r,0,Math.PI*2);c.fill();c.lineWidth=3;c.strokeStyle=f.color;c.stroke();
- // Okarun's swept-back, sharply spiked Turbo Granny transformation hair
- // is drawn over the orb so he is recognizable even before reading the label.
- if(f.id==="okarun")drawOkarunHair(c,f);
- c.fillStyle="#10121b";c.font="900 20px Orbitron";c.textAlign="center";c.textBaseline="middle";c.fillText(f.short,0,1);
+ const c=ctx;c.save();c.translate(f.x,f.y);
+ c.shadowBlur=30;c.shadowColor=f.id==="okarun"?"#ff202a":f.color;c.fillStyle=f.id==="okarun"?"#ff202a":f.color;c.globalAlpha=.2;c.beginPath();c.arc(0,0,f.r+10,0,Math.PI*2);c.fill();c.globalAlpha=1;c.shadowBlur=0;
+ if(f.id==="okarun"){
+  // Okarun is a full transformed character, not a ball carrying a weapon.
+  // The complete silhouette is contained by the enlarged circular body hitbox (f.r).
+  drawOkarunForm(c,f);
+ }else{
+  drawSignatureWeapon(c,f);
+  const g=c.createRadialGradient(-10,-12,2,0,0,f.r+2);g.addColorStop(0,"#ffffff");g.addColorStop(.18,f.flash?"#fff":f.color);g.addColorStop(1,"#151522");c.fillStyle=g;c.beginPath();c.arc(0,0,f.r,0,Math.PI*2);c.fill();c.lineWidth=3;c.strokeStyle=f.color;c.stroke();
+  c.fillStyle="#10121b";c.font="900 20px Orbitron";c.textAlign="center";c.textBaseline="middle";c.fillText(f.short,0,1);
+ }
  c.restore();
 }
 
-function drawOkarunHair(c,f){
- c.save();c.lineJoin="round";c.shadowColor="#5de5ff";c.shadowBlur=8;
- // Dark swept-back crown with distinct upward spikes and pale turbo streaks.
- c.fillStyle="#10131e";c.strokeStyle="#05070d";c.lineWidth=2.5;
- c.beginPath();c.moveTo(-f.r*.82,-f.r*.52);
- c.lineTo(-f.r*.95,-f.r*1.08);c.lineTo(-f.r*.48,-f.r*.88);
- c.lineTo(-f.r*.28,-f.r*1.42);c.lineTo(f.r*.02,-f.r*.98);
- c.lineTo(f.r*.34,-f.r*1.48);c.lineTo(f.r*.43,-f.r*.91);
- c.lineTo(f.r*.82,-f.r*1.2);c.lineTo(f.r*.68,-f.r*.68);
- c.lineTo(f.r*1.02,-f.r*.42);c.lineTo(f.r*.38,-f.r*.48);
- c.lineTo(-f.r*.35,-f.r*.42);c.closePath();c.fill();c.stroke();
- c.strokeStyle="#dffaff";c.lineWidth=3;c.beginPath();
- c.moveTo(-f.r*.42,-f.r*.72);c.lineTo(-f.r*.28,-f.r*1.12);
- c.moveTo(f.r*.12,-f.r*.72);c.lineTo(f.r*.32,-f.r*1.18);
- c.moveTo(f.r*.48,-f.r*.7);c.lineTo(f.r*.72,-f.r*.94);c.stroke();
- c.strokeStyle="#5de5ff";c.lineWidth=2;c.beginPath();
- c.moveTo(-f.r*.05,-f.r*.73);c.lineTo(f.r*.08,-f.r*1.02);
- c.moveTo(f.r*.48,-f.r*.62);c.lineTo(f.r*.82,-f.r*.82);c.stroke();
+function drawOkarunForm(c,f){
+ const r=f.r;c.save();c.lineJoin="round";c.lineCap="round";
+ // Dark shoulders and coat make the entire transformed body visible as one fighter.
+ c.fillStyle="#17151d";c.strokeStyle="#09080d";c.lineWidth=3;
+ c.beginPath();c.moveTo(-r*.58,-r*.12);c.quadraticCurveTo(-r*.92,r*.12,-r*.98,r*.78);c.quadraticCurveTo(-r*.48,r*.96,0,r*.88);c.quadraticCurveTo(r*.55,r*.98,r*.98,r*.76);c.quadraticCurveTo(r*.88,r*.12,r*.56,-r*.12);c.closePath();c.fill();c.stroke();
+ // White/gray Turbo Granny flame hair with the vivid red edge from the reference.
+ c.shadowColor="#ff242b";c.shadowBlur=12;c.fillStyle="#d9dadd";c.strokeStyle="#ef252b";c.lineWidth=5;
+ c.beginPath();c.moveTo(-r*.58,-r*.16);
+ c.quadraticCurveTo(-r*.95,-r*.36,-r*.82,-r*.82);
+ c.quadraticCurveTo(-r*.55,-r*.68,-r*.5,-r*.98);
+ c.quadraticCurveTo(-r*.22,-r*.88,-r*.12,-r*.99);
+ c.quadraticCurveTo(r*.02,-r*.83,r*.19,-r*.98);
+ c.quadraticCurveTo(r*.34,-r*.82,r*.52,-r*.96);
+ c.quadraticCurveTo(r*.56,-r*.7,r*.84,-r*.84);
+ c.quadraticCurveTo(r*.96,-r*.38,r*.58,-r*.13);
+ c.quadraticCurveTo(r*.48,-r*.28,r*.28,-r*.35);
+ c.lineTo(0,-r*.13);c.lineTo(-r*.28,-r*.35);c.quadraticCurveTo(-r*.46,-r*.28,-r*.58,-r*.16);c.closePath();c.fill();c.stroke();c.shadowBlur=0;
+ // Inner flame highlights and red streaks.
+ c.strokeStyle="#f8f8f8";c.lineWidth=5;c.beginPath();
+ c.moveTo(-r*.55,-r*.3);c.quadraticCurveTo(-r*.42,-r*.62,-r*.32,-r*.84);
+ c.moveTo(-r*.08,-r*.3);c.quadraticCurveTo(-r*.02,-r*.62,r*.08,-r*.88);
+ c.moveTo(r*.34,-r*.32);c.quadraticCurveTo(r*.48,-r*.58,r*.62,-r*.75);c.stroke();
+ c.strokeStyle="#ff252b";c.lineWidth=3;c.beginPath();c.moveTo(-r*.34,-r*.36);c.quadraticCurveTo(-r*.18,-r*.58,-r*.2,-r*.78);c.moveTo(r*.18,-r*.34);c.quadraticCurveTo(r*.3,-r*.58,r*.27,-r*.78);c.stroke();
+ // Face shadow and the iconic black mask.
+ c.fillStyle="#aeb0b4";c.beginPath();c.ellipse(0,r*.12,r*.53,r*.48,0,0,Math.PI*2);c.fill();
+ c.fillStyle="#08090d";c.strokeStyle="#030407";c.lineWidth=2;c.beginPath();
+ c.moveTo(-r*.53,-r*.02);c.quadraticCurveTo(-r*.34,-r*.25,0,-r*.18);c.quadraticCurveTo(r*.36,-r*.25,r*.53,-r*.02);
+ c.lineTo(r*.43,r*.48);c.quadraticCurveTo(0,r*.78,-r*.43,r*.48);c.closePath();c.fill();c.stroke();
+ // Narrow, fierce red eyes.
+ c.fillStyle="#fff";c.beginPath();c.moveTo(-r*.43,r*.02);c.lineTo(-r*.08,r*.09);c.lineTo(-r*.25,r*.22);c.closePath();c.fill();
+ c.beginPath();c.moveTo(r*.43,r*.02);c.lineTo(r*.08,r*.09);c.lineTo(r*.25,r*.22);c.closePath();c.fill();
+ c.fillStyle="#ed2029";c.beginPath();c.ellipse(-r*.25,r*.13,r*.075,r*.09,0,0,Math.PI*2);c.ellipse(r*.25,r*.13,r*.075,r*.09,0,0,Math.PI*2);c.fill();
+ c.fillStyle="#090a0e";c.beginPath();c.moveTo(-r*.12,r*.3);c.lineTo(0,r*.22);c.lineTo(r*.12,r*.3);c.lineTo(0,r*.43);c.closePath();c.fill();
+ // Dense vertical teeth grin, the most recognizable part of this Turbo form.
+ c.fillStyle="#f0f0ed";c.strokeStyle="#999ba0";c.lineWidth=1.2;c.beginPath();c.moveTo(-r*.4,r*.36);c.quadraticCurveTo(0,r*.29,r*.4,r*.36);c.lineTo(r*.32,r*.67);c.quadraticCurveTo(0,r*.82,-r*.32,r*.67);c.closePath();c.fill();c.stroke();
+ c.strokeStyle="#777b82";c.lineWidth=1.3;for(let i=-3;i<=3;i++){const x=i*r*.095;c.beginPath();c.moveTo(x,r*.35+Math.abs(i)*r*.006);c.lineTo(x,r*.69-Math.abs(i)*r*.018);c.stroke()}
+ // Small side details and red aura accents.
+ c.strokeStyle="#ff3339";c.lineWidth=2;c.beginPath();c.moveTo(-r*.58,-r*.05);c.lineTo(-r*.7,r*.25);c.moveTo(r*.58,-r*.05);c.lineTo(r*.7,r*.25);c.stroke();
  c.restore();
 }
 
@@ -253,11 +275,6 @@ function drawSignatureWeapon(c,f){
   c.lineWidth=2;c.beginPath();c.arc(0,0,r+7,-.88,.78);c.stroke();
   c.fillStyle="#fff";c.beginPath();c.arc(r+1,0,5,0,Math.PI*2);c.fill();
   c.fillStyle=f.color;c.beginPath();c.arc(r+8,-7,2.5,0,Math.PI*2);c.fill();
- }else if(f.id==="okarun"){
-  // Okarun: twin forward-pointing turbo talons with speed fins.
-  c.lineWidth=4;c.beginPath();c.moveTo(r*.45,-r*.9);c.lineTo(r+17,-r*.35);c.lineTo(r+5,0);c.lineTo(r+17,r*.35);c.lineTo(r*.45,r*.9);c.stroke();
-  c.lineWidth=3;c.beginPath();c.moveTo(r*.2,-r*.55);c.lineTo(r+8,-r*.25);c.moveTo(r*.2,r*.55);c.lineTo(r+8,r*.25);c.stroke();
-  c.fillStyle="#fff";c.beginPath();c.moveTo(r+19,-r*.35);c.lineTo(r+29,0);c.lineTo(r+19,r*.35);c.closePath();c.fill();
  }else if(f.id==="aira"){
   // Aira: three flowing hair-whip ribbons curling around the orb.
   [-.24,0,.24].forEach((offset,i)=>{c.lineWidth=4-i*.7;c.beginPath();c.moveTo(r*.15,-r*.72+offset*35);c.bezierCurveTo(r*.85,-r*.95+offset*25,r*1.2,-r*.2+offset*20,r*.78,.05+offset*38);c.bezierCurveTo(r*1.28,r*.55+offset*25,r*.7,r*.92+offset*20,r*.28,r*.72+offset*30);c.stroke()});
