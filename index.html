@@ -117,7 +117,7 @@ $("soundBtn").addEventListener("click",()=>{sound=!sound;$("soundBtn").textConte
 
 function createFighter(def,index,health){
  const angle=(Math.PI*2*index/selected.size)-Math.PI/2;
- return {...def,x:550+Math.cos(angle)*245,y:310+Math.sin(angle)*190,vx:(Math.random()-.5)*3,vy:(Math.random()-.5)*3,r:def.id==="okarun"?44:29,hp:health,maxHp:health,rotation:Math.random()*6.28,spin:0.09,attackCd:0,specialCd:def.id==="momo"?999:def.id==="aira"?8:def.id==="jiji"?3.6:1.1,flash:0,alive:true,damageDone:0,hits:0,team:mode==="2v2"?(index<2?0:1):index,knock:0,charge:0,dashCharges:2,bound:0};
+ return {...def,x:550+Math.cos(angle)*245,y:310+Math.sin(angle)*190,vx:(Math.random()-.5)*3,vy:(Math.random()-.5)*3,r:def.id==="okarun"?44:29,hp:health,maxHp:health,rotation:Math.random()*6.28,spin:0.09,attackCd:0,specialCd:def.id==="momo"?999:def.id==="aira"?8:def.id==="jiji"?2.5:1.1,flash:0,alive:true,damageDone:0,hits:0,team:mode==="2v2"?(index<2?0:1):index,knock:0,charge:0,dashCharges:2,bound:0};
 }
 function startBattle(){
  cancelAnimationFrame(raf);clearTimeout(countdownTimer);battleToken++;const token=battleToken;
@@ -206,8 +206,8 @@ function special(f,target){
   f.spin=Math.min(.34,f.spin+.1);attack(f,target,true);
   burst(f.x,f.y,"#ff343b",42);announce("Okarun Turbo Dash! "+f.dashCharges+" dash(es) remaining.");
  }else if(f.id==="jiji"){
-  // Jiji launches his Evil Eye orb as a projectile every 3.6 seconds.
-  f.specialCd=3.6;const d=Math.hypot(target.x-f.x,target.y-f.y)||1;
+  // Jiji launches his Evil Eye orb as a projectile every 2.5 seconds.
+  f.specialCd=2.5;const d=Math.hypot(target.x-f.x,target.y-f.y)||1;
   projectiles.push({x:f.x,y:f.y,vx:(target.x-f.x)/d*10,vy:(target.y-f.y)/d*10,owner:f,life:2.4,r:13,damage:27});
   burst(f.x,f.y,"#a987ff",18);announce("Jiji fires the Evil Eye orb!");
  }
