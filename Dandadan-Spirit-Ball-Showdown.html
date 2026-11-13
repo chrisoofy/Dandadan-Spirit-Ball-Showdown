@@ -73,7 +73,7 @@ const FIGHTERS = [
  {id:"momo",name:"Momo Ayase",short:"桃",color:"#ff5a9b",team:0,weapon:"Psychic Force Rings",power:"Psychokinesis",desc:"Controls space and shoves rivals away.",hp:200,damage:13,speed:2.5,reach:1.05,special:"psychic"},
  {id:"okarun",name:"Okarun",short:"速",color:"#ff343b",team:1,weapon:"No weapon · Full-body Turbo Form",power:"Turbo Burst",desc:"His entire transformed body is the hitbox; attacks land through full-body contact.",hp:200,damage:12,speed:3.5,reach:0,special:"turbo"},
  {id:"aira",name:"Aira Shiratori",short:"愛",color:"#ffca59",team:0,weapon:"Acro-Hair Whips",power:"Crimson Halo",desc:"Whips a wide arc around her body.",hp:200,damage:11,speed:2.8,reach:1.3,special:"hair"},
- {id:"jiji",name:"Jiji",short:"邪",color:"#a987ff",team:1,weapon:"Evil Eye Cursed Fists",power:"Evil Eye Surge",desc:"Unleashes a heavy burst of cursed energy.",hp:200,damage:15,speed:2.2,reach:1.15,special:"evil"}
+ {id:"jiji",name:"Jiji",short:"邪",color:"#a987ff",team:1,weapon:"Purple Evil Eye Orb",power:"Evil Eye Surge",desc:"A purple cursed-energy orb hovers beside him and erupts in a heavy burst.",hp:200,damage:15,speed:2.2,reach:0.35,special:"evil"}
 ];
 const $ = id => document.getElementById(id);
 const canvas=$("arena"),ctx=canvas.getContext("2d");
@@ -218,7 +218,7 @@ function drawFighter(f){
   // The complete silhouette is contained by the enlarged circular body hitbox (f.r).
   drawOkarunForm(c,f);
  }else{
-  drawSignatureWeapon(c,f);
+  if(f.id==="jiji")drawJijiOrb(c,f);else drawSignatureWeapon(c,f);
   const g=c.createRadialGradient(-10,-12,2,0,0,f.r+2);g.addColorStop(0,"#ffffff");g.addColorStop(.18,f.flash?"#fff":f.color);g.addColorStop(1,"#151522");c.fillStyle=g;c.beginPath();c.arc(0,0,f.r,0,Math.PI*2);c.fill();c.lineWidth=3;c.strokeStyle=f.color;c.stroke();
   c.fillStyle="#10121b";c.font="900 20px Orbitron";c.textAlign="center";c.textBaseline="middle";c.fillText(f.short,0,1);
  }
@@ -279,15 +279,22 @@ function drawSignatureWeapon(c,f){
   // Aira: three flowing hair-whip ribbons curling around the orb.
   [-.24,0,.24].forEach((offset,i)=>{c.lineWidth=4-i*.7;c.beginPath();c.moveTo(r*.15,-r*.72+offset*35);c.bezierCurveTo(r*.85,-r*.95+offset*25,r*1.2,-r*.2+offset*20,r*.78,.05+offset*38);c.bezierCurveTo(r*1.28,r*.55+offset*25,r*.7,r*.92+offset*20,r*.28,r*.72+offset*30);c.stroke()});
   c.fillStyle="#fff";c.beginPath();c.arc(r*.95,-r*.25,4,0,Math.PI*2);c.fill();
- }else{
-  // Jiji: paired Evil Eye cursed fists with hooked knuckle spikes.
-  c.lineWidth=5;c.beginPath();c.arc(-r*.48,0,r*.58,-1.15,1.15);c.stroke();
-  c.beginPath();c.arc(r*.48,0,r*.58,Math.PI-.95,Math.PI+.95);c.stroke();
-  [-.62,-.2,.2,.62].forEach((a,i)=>{const side=i<2?-1:1, y=(i%2?1:-1)*r*.28;
-   c.beginPath();c.moveTo(side*r*.62,y);c.lineTo(side*r*1.08,y-r*.16);c.lineTo(side*r*.92,y+r*.22);c.stroke();
-  });
-  c.fillStyle="#fff";c.beginPath();c.arc(r*1.05,-r*.12,4,0,Math.PI*2);c.fill();
  }
+ c.restore();
+}
+
+function drawJijiOrb(c,f){
+ // Jiji has no weapon: a small Evil Eye orb of purple cursed energy floats beside him.
+ const x=f.r*.92,y=-f.r*.72,r=f.r*.34,pulse=1+Math.sin(f.rotation*2)*.09;
+ c.save();c.translate(x,y);c.scale(pulse,pulse);
+ c.globalAlpha=.34;c.fillStyle="#a56bff";c.shadowColor="#a56bff";c.shadowBlur=30;
+ c.beginPath();c.arc(0,0,r*1.85,0,Math.PI*2);c.fill();
+ c.globalAlpha=1;c.shadowBlur=22;c.lineWidth=2;c.strokeStyle="#e7caff";
+ c.beginPath();c.arc(0,0,r*1.28,0,Math.PI*2);c.stroke();
+ const orb=c.createRadialGradient(-r*.35,-r*.4,1,0,0,r);
+ orb.addColorStop(0,"#fff4ff");orb.addColorStop(.22,"#d8aaff");orb.addColorStop(.58,"#963cff");orb.addColorStop(1,"#31005f");
+ c.fillStyle=orb;c.beginPath();c.arc(0,0,r,0,Math.PI*2);c.fill();
+ c.shadowBlur=0;c.fillStyle="#fff";c.beginPath();c.arc(-r*.3,-r*.34,r*.16,0,Math.PI*2);c.fill();
  c.restore();
 }
 
